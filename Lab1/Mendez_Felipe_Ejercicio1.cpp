@@ -2,6 +2,9 @@
 #include <string>
 using namespace std;
 
+int tamaño_arreglo=2;
+
+//Funciones a usar del ejercio 0
 struct Pacientes{
     string Nombre;//nombre 
     int Edad;//edad en años
@@ -25,14 +28,42 @@ void printear(Pacientes p){
     cout<< "Altura: "<<p.Altura <<" m"<<endl;
     cout << "------------------"<<endl;
 }
+    
+void agregar_paciente(Pacientes arreglo[] ,Pacientes a){
+    int i=0;
+    while(arreglo[i].Nombre!=""){//busca el primer espacio vacio en el arreglo
+        i++;
+    }
+    if (i<tamaño_arreglo){// verifica que no se pase del tamaño maximo
+        arreglo[i]=a;// coloca a nuevo paciente en el arreglo
+        cout<<"se agrego el paciente: "<<endl;
+        printear(a);//describe al paciente agregado
+    }else{
+        cout<<"lista llena,no se ha agregado el paciente"<<endl;  
+    }
+}
 
+void Escribir_arreglo(Pacientes arreglo[]){
+    int i=0;
+    cout<<"___________________________________________"<<endl;
+    cout<<"La lista Competa seria:"<<endl;
+    while(arreglo[i].Nombre!=""){//recorre cada arreglo para imprimirlo
+        printear(arreglo[i]);
+        i++;
+    }
+}
+    
 int main(){
+    //crea arrego y pacientes
+    Pacientes pacientes[tamaño_arreglo];
     Pacientes paciente1=Crear_paciente("Maria",30,60.2,1.77);
     Pacientes paciente2=Crear_paciente("Pedro",20,70,1.54);
     Pacientes paciente3=Crear_paciente("Camilo",22,100,1.83);
-    printear(paciente1);
-    printear(paciente2);
-    printear(paciente3);
-    return 0;
+    // Agregar pacientes al arreglo
+    agregar_paciente(pacientes,paciente1);
+    agregar_paciente(pacientes,paciente2);
+    agregar_paciente(pacientes,paciente3);
+    //muestra el arreglo final de pacientes
+    Escribir_arreglo(pacientes);
+    return 0; 
 }
-
