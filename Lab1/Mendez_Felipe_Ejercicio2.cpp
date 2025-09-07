@@ -52,7 +52,14 @@ void Escribir_arreglo(Pacientes arreglo[]){
         i++;
     }
 }
+
+void eliminar_paciente(Pacientes arreglo[],int n){  //n es la posiciojn que quiere eliminar
+    for (int i=n;i<tamaño_arreglo;i++){
+        arreglo[i]=arreglo[i+1];
+    }
     
+}
+
 int main(){
     //crea arrego y pacientes
     Pacientes pacientes[tamaño_arreglo];
@@ -64,6 +71,10 @@ int main(){
     agregar_paciente(pacientes,paciente2);
     agregar_paciente(pacientes,paciente3);
     //muestra el arreglo final de pacientes
+    Escribir_arreglo(pacientes);
+    //elimina a pedro
+    eliminar_paciente(pacientes,1);
+    //muestra el arreglo eliminando a pedro
     Escribir_arreglo(pacientes);
     return 0; 
 }
