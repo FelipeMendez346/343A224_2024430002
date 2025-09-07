@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
+#include <cmath>
 
 int tamaño_arreglo=10;
 
@@ -26,6 +27,7 @@ void printear(Pacientes p){
     cout<< "Edad: "<<p.Edad<<" años"<<endl;
     cout<< "Peso: "<<p.Peso<<" kg"<<endl;
     cout<< "Altura: "<<p.Altura <<" m"<<endl;
+    cout<< "IMC: "<<p.Peso/pow(p.Altura, 2)<<endl;
     cout << "------------------"<<endl;
 }
     
@@ -60,6 +62,26 @@ void eliminar_paciente(Pacientes arreglo[],int n){  //n es la posicion que quier
 
 }
 
+void Promedios(Pacientes arreglo[]){
+    int Pr_Edad=0;
+    int Pr_peso=0;
+    int i=0;
+    while(arreglo[i].Nombre!=""){//busca el largo de pacientes
+        i++;
+    }
+    for (int a=0;a<i;a++){//dependiendo del largo va sumando
+        Pr_Edad+=arreglo[a].Edad;
+        Pr_peso+=arreglo[a].Peso;   
+    }
+    Pr_Edad/=i;
+    Pr_peso/=i;
+    cout<<"Promedio de Edad: "<<Pr_Edad<<" años"<<endl;
+    cout<<"Promedio de Peso: "<<Pr_peso<<" Kg"<<endl;
+
+
+}
+
+
 int main(){
     //crea arrego y pacientes
     Pacientes pacientes[tamaño_arreglo];
@@ -72,9 +94,7 @@ int main(){
     agregar_paciente(pacientes,paciente3);
     //muestra el arreglo final de pacientes
     Escribir_arreglo(pacientes);
-    //elimina a pedro
-    eliminar_paciente(pacientes,1);
-    //muestra el arreglo eliminando a pedro
-    Escribir_arreglo(pacientes);
+    Promedios(pacientes);
+
     return 0; 
 }
