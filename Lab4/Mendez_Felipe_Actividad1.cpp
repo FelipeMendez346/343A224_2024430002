@@ -28,7 +28,7 @@ Node* Buscar_nodo(Node* node, int N) {
     }
     return Buscar_nodo(node->right, N);
 }
-
+//revisa que no exista un valor previamente
 bool esta_en_nodo(Node* nodo,int numero){
     if(Buscar_nodo(nodo,numero)==nullptr){
         return true;
@@ -135,6 +135,7 @@ void Agregar_Nodo(Node* node,int n){
         cout<<"error, existe un nodo con el numero ingresado\n";
     }    
 }
+//elimina un dato y lo reemplaza por nullptr
 Node* Eliminar_Nodo(Node* node, int n) {
     Node* nodo = Buscar_nodo(node, n);
     if (nodo == nullptr) {
@@ -153,7 +154,7 @@ Node* Eliminar_Nodo(Node* node, int n) {
 
     return node;
 }
-
+//nodo para cambiar un dato a cambiar a un a reemplazar
 void cambiar_nodo(Node* node,int n_a_cambiar,int n_a_reemplazar){
     if (esta_en_nodo(node,n_a_reemplazar)){ 
         Node* nodo_cambiado=Buscar_nodo(node,n_a_cambiar);
@@ -173,7 +174,7 @@ void printPreOrder(Node* node) {
     if (node == nullptr) {
         return;
     }
-    cout << node->info << " - ";   // Imprimir el dato del nodo actual
+    cout << node->info << " - ";  //imprime el dato junto a un guion 
     printPreOrder(node->left);   // Recorrer el subarbol izquierdo
     printPreOrder(node->right);  // Recorrer el subarbol derecho
 }
@@ -182,25 +183,23 @@ void printInOrder(Node* node){
     if (node==nullptr){
         return;
     }
-    printInOrder(node->left);
-    cout<<node->info <<" - ";
-    printInOrder(node->right);
+    printInOrder(node->left); //recorre el subarbol izquierdao
+    cout<<node->info <<" - "; //imprime el dato junto a un guion 
+    printInOrder(node->right); //recorre el subarbol derecho
 }
 // Funcion recursiva para imprimir el arbol Posorden
 void printPosOrder(Node* node){
     if (node==nullptr){
         return;
     }
-    printPosOrder(node->left);
-    printPosOrder(node->right);
-    cout<<node->info<<" - ";
+    printPosOrder(node->left);   // Recorrer el subarbol izquierdo
+    printPreOrder(node->right);  // Recorrer el subarbol derecho
+    cout<<node->info<<" - ";    //imprime el dato junto a un guion 
 }
 
 int main() {
     int opcion;
     Node* root = nullptr;
-
-    cout << "Construccion interactiva del arbol binario:\n";
     crea_arbol(root);
     do {
         cout << "----- Menú -----\n";
